@@ -1,4 +1,5 @@
 extends Node2D
+signal colided
 
 var acceleration: Vector2 = Vector2(0, 0)
 var velocity: Vector2 = Vector2(0, 0)
@@ -123,3 +124,8 @@ func borders():
 		position.y = window.size.y
 	if position.y > window.size.y:
 		position.y = -size.y
+
+
+func _on_enemy_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		colided.emit()

@@ -25,4 +25,5 @@ func _process(delta: float) -> void:
 
 
 func _on_asteroid_area_area_entered(area: Area2D) -> void:
-	colided.emit()
+	if area.is_in_group("player"):
+		colided.emit()
