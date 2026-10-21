@@ -13,6 +13,8 @@ var alive_time: float = 0
 func _ready() -> void:
 	asteroid.colided.connect(_on_player_hit)
 	enemy.colided.connect(_on_player_hit)
+	enemy.max_speed = 9
+	enemy.max_force = 60
 	for i in count:
 		var enemy_instance = enemy_scene.instantiate()
 		enemy_instance.scale = Vector2(0.5, 0.5)
@@ -23,7 +25,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	alive_time += delta
 	timer_label.text = "Время жизни: %.1f с" % alive_time
-	enemy.pursue(player.position, player.velocity)
+	enemy.orbit(player.position, 150)
 	for child in enemies.get_children():
 		child.alignment(enemies)
 		#child.separate(enemies)

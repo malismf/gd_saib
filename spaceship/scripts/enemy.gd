@@ -64,6 +64,13 @@ func evade(target: Vector2, target_velocity: Vector2):
 	var ahead_time: float = direction.length() / speed
 	var predict = target + target_velocity * ahead_time
 	flee(predict)
+	
+func orbit(target: Vector2, radius: float, lead_angle: float = 0.4):
+	var offset = position - target
+	if offset == Vector2.ZERO:
+		offset = Vector2.RIGHT
+	var point = target + offset.normalized().rotated(lead_angle) * radius
+	seek(point)
 
 func separate(group: Node2D):
 	var steering: Vector2 = Vector2.ZERO
