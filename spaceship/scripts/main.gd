@@ -4,8 +4,10 @@ extends Node2D
 @onready var asteroid: Node2D = $Asteroid
 @onready var enemy: Node2D = $Enemy
 @onready var enemies: Node2D = $Enemies
+@onready var timer_label: Label = $Timer/TimerLabel
 @onready var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 var count: int = 10
+var alive_time: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +21,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	alive_time += delta
+	timer_label.text = "Время жизни: %.1f с" % alive_time
 	enemy.pursue(player.position, player.velocity)
 	for child in enemies.get_children():
 		child.alignment(enemies)
@@ -26,3 +30,4 @@ func _process(delta: float) -> void:
 		
 func _on_player_hit() -> void:
 	player.damaged()
+	alive_time = 0

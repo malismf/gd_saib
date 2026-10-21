@@ -23,3 +23,13 @@ position = Vector2(512, 235)
 
 [node name="Player" parent="." unique_id=1559279021 instance=ExtResource("2_0wfyh")]
 position = Vector2(517, 381)
+
+[node name="Timer" type="CanvasLayer" parent="." unique_id=1203948571]
+
+[node name="TimerLabel" type="Label" parent="Timer" unique_id=874120563]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 316.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 24
+text = "Время жизни: 0.0 с"
